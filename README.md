@@ -1,5 +1,6 @@
+# My Gitea Configuration
 
----
+<br><br>
 
 ## 1. Download the [gitea](https://dl.gitea.com/gitea/1.22.1/gitea-1.22.1-linux-amd64) binary
 
@@ -13,24 +14,41 @@ Change the permissions: `sudo chmod 755 /usr/local/bin/gitea`
 
 Paste the following:
 
+---
 `[Unit]`
+
 `Description=Gitea (Git with a cup of tea)`
+
 `After=syslog.target`
+
 `After=network.target`
+
 `Wants=mysql.service`
+
 `After=mysql.service`
 
+---
 `[Service]`
+
 `RestartSec=2s`
+
 `Type=simple`
+
 `User=gitea`
+
 `Group=gitea`
+
 `WorkingDirectory=/var/lib/gitea`
+
 `ExecStart=/usr/local/bin/gitea web --config /etc/gitea/app.ini`
+
 `Restart=always`
+
 `Environment=USER=gitea HOME=/home/gitea GITEA_WORK_DIR=/var/lib/gitea`
 
+---
 `[Install]`
+
 `WantedBy=multi-user.target`
 
 ### Note that:
